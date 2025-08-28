@@ -1,0 +1,505 @@
+/* Optimized CSS imports - only load what's needed */
+@import url("https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Base styles */
+:root {
+  background-color: transparent;
+  color-scheme: dark;
+}
+
+/* Performance optimizations */
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+
+/* Optimize font loading */
+@font-face {
+  font-family: "Sifonn-Pro";
+  src: url("https://anima-uploads.s3.amazonaws.com/5d6a148897ac03b9cb775293/SIFONN_PRO.otf")
+    format("opentype");
+  font-display: swap;
+}
+
+/* Ensure proper font weights for Poppins */
+.font-poppins {
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Exact Figma heading style for larger screens */
+@media (min-width: 1280px) {
+  .xl\:text-\[64px\] {
+    font-size: 64px !important;
+  }
+}
+
+/* Ensure the exact semibold weight from Figma */
+.font-semibold {
+  font-weight: 600 !important;
+}
+
+/* Core layout styles */
+html {
+  background-color: #0F0F11;
+  min-height: 100%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+html::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #0F0F11;
+  z-index: -30;
+}
+
+body {
+  background-color: #0F0F11;
+  color: #ffffff;
+  min-height: 100vh;
+  overflow-x: hidden;
+  /* Optimize text rendering */
+  text-rendering: optimizeLegibility;
+  -webkit-overflow-scrolling: touch;
+  /* Optimize text rendering */
+  text-rendering: optimizeLegibility;
+  -webkit-font-feature-settings: "kern" 1;
+  font-feature-settings: "kern" 1;
+}
+
+/* Optimize focus styles */
+button:focus-visible {
+  outline: 2px solid #4a90e2 !important;
+  outline: -webkit-focus-ring-color auto 5px !important;
+}
+
+/* Optimize links */
+a {
+  text-decoration: none;
+  /* Optimize link rendering */
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Optimize buttons */
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: inherit;
+  /* Optimize button rendering */
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+
+/* Optimize images */
+img {
+  max-width: 100%;
+  height: auto;
+  /* Optimize image rendering */
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+}
+
+/* Custom testimonial dots */
+.testimonial-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+}
+
+.testimonial-dot.active {
+  width: 24px;
+  height: 8px;
+  background-color: white;
+}
+
+.testimonial-dot.inactive {
+  width: 8px;
+  height: 8px;
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+.testimonial-dot.inactive:hover {
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+/* Mobile-specific testimonial dots */
+@media (max-width: 768px) {
+  .testimonial-dot {
+    width: 8px !important;
+    height: 8px !important;
+    border-radius: 50% !important;
+    transition: all 0.2s ease !important;
+    flex-shrink: 0 !important;
+  }
+
+  .testimonial-dot.active {
+    width: 24px !important;
+    height: 8px !important;
+    background-color: white !important;
+  }
+
+  .testimonial-dot.inactive {
+    width: 8px !important;
+    height: 8px !important;
+    background-color: rgba(255, 255, 255, 0.4) !important;
+  }
+
+  .testimonial-dot.inactive:hover {
+    background-color: rgba(255, 255, 255, 0.6) !important;
+  }
+}
+
+/* shadcn/ui CSS Variables - optimized */
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222.2 84% 4.9%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96%;
+    --accent-foreground: 222.2 84% 4.9%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+  }
+}
+
+/* Custom CSS Variables - optimized */
+:root {
+  --collection-1-colours-accent-light-green-light-green-300: rgba(187, 222, 193, 1);
+}
+
+/* Performance optimizations for animations */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Optimize for mobile performance */
+@media (max-width: 768px) {
+  /* Reduce animations on mobile for better performance */
+  .animate-float {
+    animation: none;
+  }
+  
+  /* Optimize touch targets */
+  button, a {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Mobile-specific header optimizations */
+  header {
+    backdrop-filter: blur(10px) !important;
+  }
+  
+  /* Mobile product card optimizations */
+  .nav-item::after {
+    transition: width 0.2s ease-in-out;
+  }
+}
+
+/* Mobile-specific product section improvements */
+@media (max-width: 1024px) {
+  /* Ensure proper spacing on tablets */
+  .product-card {
+    margin-bottom: 1rem;
+  }
+}
+
+/* Ensure smooth scrolling on all devices */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Optimize for touch devices */
+@media (hover: none) and (pointer: coarse) {
+  .nav-item:hover::after {
+    width: 0;
+  }
+  
+  .nav-item.active:hover::after {
+  width: 100%;
+  }
+}
+
+/* Global mobile responsiveness improvements */
+@media (max-width: 768px) {
+  /* Improve text readability on mobile */
+  h1, h2, h3, h4, h5, h6 {
+    line-height: 1.2;
+  }
+  
+  /* Better spacing for mobile sections */
+  section, div[id*="section"] {
+    padding-left: clamp(16px, 4vw, 80px) !important;
+    padding-right: clamp(16px, 4vw, 80px) !important;
+  }
+  
+  /* Improve button touch targets */
+  button {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Better form inputs on mobile */
+  input, textarea, select {
+    font-size: 16px !important; /* Prevents zoom on iOS */
+  }
+  
+  /* Improve card layouts on mobile */
+  .card, [class*="card"] {
+    margin-bottom: 1rem;
+  }
+  
+  /* Better image scaling */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  /* Improve navigation on mobile */
+  nav {
+    padding: 0.5rem;
+  }
+  
+  /* Better modal handling on mobile */
+  .modal, [class*="modal"] {
+    padding: 1rem;
+  }
+}
+
+/* Tablet optimizations */
+@media (min-width: 769px) and (max-width: 1024px) {
+  /* Better spacing for tablets */
+  section, div[id*="section"] {
+    padding-left: clamp(32px, 6vw, 80px) !important;
+    padding-right: clamp(32px, 6vw, 80px) !important;
+  }
+  
+  /* Improve grid layouts on tablets */
+  .grid {
+    gap: 1rem;
+  }
+}
+
+/* Ensure proper spacing for all screen sizes */
+@media (min-width: 1025px) {
+  /* Maintain desktop spacing */
+  section, div[id*="section"] {
+    padding-left: 80px !important;
+    padding-right: 80px !important;
+  }
+}
+
+/* Improve accessibility on all devices */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Better focus indicators for accessibility */
+*:focus-visible {
+  outline: 2px solid #4a90e2;
+  outline-offset: 2px;
+}
+
+/* Header navigation border animation */
+.nav-item {
+  position: relative;
+  overflow: hidden;
+}
+
+.nav-item::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 5px;
+  background: linear-gradient(270deg, #004A65 0%, #1A6262 100%);
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 2px;
+  transform: translateZ(0); /* Force hardware acceleration */
+}
+
+.nav-item.active::after {
+  width: 100%;
+}
+
+/* Hover effect for better UX */
+.nav-item:hover::after {
+  width: 30%;
+}
+
+.nav-item.active:hover::after {
+  width: 100%;
+}
+
+/* Hide scrollbars but keep scrolling (cross-browser) */
+.scrollbar-hide {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none;    /* Firefox */
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;            /* Chrome, Safari, Opera */
+}
+
+/* Responsive overrides (tablet & mobile) - only affects widths <= 1024px and <= 768px
+   These rules intentionally use !important inside media queries to override inline styles
+   applied to desktop layout while keeping desktop versions untouched. */
+
+@media (max-width: 1024px) {
+  /* Hero adjustments */
+  #section-hero .z-20 {
+    padding-left: clamp(16px, 4vw, 40px) !important;
+    padding-right: clamp(16px, 4vw, 40px) !important;
+    padding-top: 60px !important;
+    padding-bottom: 60px !important;
+    gap: 32px !important;
+    align-items: center !important;
+  }
+
+  /* Why choose */
+  #why-choose {
+    padding-left: clamp(16px, 4vw, 40px) !important;
+    padding-right: clamp(16px, 4vw, 40px) !important;
+    padding-top: 48px !important;
+    padding-bottom: 48px !important;
+    gap: clamp(24px, 4vw, 48px) !important;
+    flex-direction: column !important;
+    align-items: center !important;
+  }
+
+  /* Products */
+  #our-products {
+    padding-left: clamp(16px, 4vw, 40px) !important;
+    padding-right: clamp(16px, 4vw, 40px) !important;
+    padding-top: 48px !important;
+    padding-bottom: 48px !important;
+    gap: clamp(16px, 4vw, 32px) !important;
+    flex-direction: column !important;
+    align-items: center !important;
+  }
+
+  /* Steps (selected by common lg:flex-row + items-start classes) */
+  [class*="lg:flex-row"][class*="items-start"] {
+    padding-left: clamp(16px, 4vw, 40px) !important;
+    padding-right: clamp(16px, 4vw, 40px) !important;
+    padding-top: 40px !important;
+    padding-bottom: 40px !important;
+    gap: clamp(24px, 4vw, 48px) !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+  }
+
+  /* FAQ section */
+  #faq-section {
+    padding-left: clamp(16px, 4vw, 40px) !important;
+    padding-right: clamp(16px, 4vw, 40px) !important;
+    padding-top: 48px !important;
+    padding-bottom: 48px !important;
+    gap: clamp(24px, 4vw, 48px) !important;
+  }
+
+  /* Hexagons image (first image child inside faq-section) - scale and reposition */
+  #faq-section > img:first-of-type {
+    left: -40px !important;
+    top: 20px !important;
+    width: 320px !important;
+    height: auto !important;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Stronger mobile overrides */
+  #section-hero .z-20,
+  #why-choose,
+  #our-products,
+  #faq-section,
+  [class*="lg:flex-row"][class*="items-start"] {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+    padding-top: 32px !important;
+    padding-bottom: 32px !important;
+    gap: 16px !important;
+    flex-direction: column !important;
+    align-items: center !important;
+  }
+
+  /* Reduce hero content gap and tighten headings on small screens */
+  #section-hero .z-20 {
+    gap: 24px !important;
+  }
+
+  /* FAQ hexagons: hide on very small screens to avoid overlap, use decorative background instead */
+  #faq-section > img:first-of-type {
+    display: none !important;
+  }
+
+  /* Ensure images scale down safely */
+  #section-hero img,
+  #why-choose img,
+  #our-products img,
+  #faq-section img {
+    max-width: 100% !important;
+    height: auto !important;
+  }
+}
